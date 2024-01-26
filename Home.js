@@ -11,8 +11,14 @@ function Home( path, layContent )
     //Show or hide this page.
     this.Show = function( show )
     {
-        if( show ) lay.Animate("FadeIn");
+        if( show ) lay.Animate("FadeIn"),img.SeekTo( parseInt(prompt("",0 )));
         else lay.Animate( "FadeOut" );
+    }
+    
+    this.Sec= function( s )
+    {
+  //  <img.
+        txt1.SetText( s +" = "+totalSeconds );
     }
     
     //Create layout for app controls.
@@ -21,12 +27,14 @@ function Home( path, layContent )
     layContent.AddChild( lay );
     
     //Add a logo.
-	var img = app.CreateVideoView( 1, -1 );
+	var img = app.CreateVideoView( 1, -1,"showcontrols,Absolute,zoom" );
 	img.SetOnReady( ()=>{img.Play();} );
-	img.SetBackColor( "#ffffff" );
-	img.SetFile( videoUrl );
+//img.SetBackColor( "#69ffffff" );
+
 	lay.AddChild( img );
 	
+	var txt1 = app.CreateText( "", 1, -1, "Html,Link" );
+	lay.AddChild( txt1 );
 	//Create a text with formatting.
     var text = "<p><font color=#4285F4><big>Welcome</big></font></p>" + 
     "Todo: Put your home page controls here! </p>" + 
@@ -38,5 +46,6 @@ function Home( path, layContent )
     txt.SetTextSize( 18 );
     txt.SetTextColor( "#444444" );
     lay.AddChild( txt );
+    
+    	img.SetFile( videoUrl );
 }
-
